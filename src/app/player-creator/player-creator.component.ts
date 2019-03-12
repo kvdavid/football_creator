@@ -75,6 +75,26 @@ export class PlayerCreatorComponent implements OnInit {
     this.selected_count = this.selected_players.length;
   }
 
+  public jsMessage() {
+    let myMessage = document.getElementById("flashMessage");
+    if (!myMessage) {
+      myMessage = document.createElement("div");
+      myMessage.setAttribute("id", "flashMessage");
+      let body = document.getElementsByTagName('body')[0];
+      myMessage.innerHTML = "";
+      body.appendChild(myMessage);
+    }
+    myMessage.innerHTML = "<div class='text-center alert alert-info'>Sikeres mentés!</div>";
+    $("#flashMessage").stop().fadeIn(500);
+    let timer = setTimeout(function () {
+      // var body = document.getElementsByTagName('body')[0];
+      $("#flashMessage").fadeOut(2000, function () {
+        myMessage.innerHTML = ""
+        //body.removeChild(myFlash)
+      });
+    }, 2000);
+  }
+
   public save_players_to_team() {
 
     let kapus_counter: number = 0;
@@ -97,21 +117,21 @@ export class PlayerCreatorComponent implements OnInit {
       }
     }
 
-    if(kapus_counter > 1){
+    if (kapus_counter > 1) {
       swal({
         title: "Hiba!",
         text: "Egynél több kapust nem lehet csapathoz rendelni!",
         icon: "warning",
         dangerMode: true,
       })
-    } else if (hatved_counter > 4){
+    } else if (hatved_counter > 4) {
       swal({
         title: "Hiba!",
         text: "Négynél több hátvédet nem lehet csapathoz rendelni!",
         icon: "warning",
         dangerMode: true,
       })
-    } else if(kozeppalyas_counter > 4) {
+    } else if (kozeppalyas_counter > 4) {
       swal({
         title: "Hiba!",
         text: "Négynél több középpályást nem lehet csapathoz rendelni!",
@@ -125,30 +145,17 @@ export class PlayerCreatorComponent implements OnInit {
         icon: "warning",
         dangerMode: true,
       })
-    } else{
+    } else {
       this.ajax.ajxCall("/player_manager.php?fkt=delete_players_to_teams", { team_id: this.team_id }).subscribe(res => {
       });
-  
-      for (let i = 0; i < this.selected_players.length; i++) {
-        this.ajax.ajxCall("/player_manager.php?fkt=save_players_to_teams", { team_id: this.team_id, player_id: this.selected_players[i].ID }).subscribe(res => {
-          let myMessage = document.getElementById("flashMessage");
-          if (!myMessage) {
-            myMessage = document.createElement("div");
-            myMessage.setAttribute("id", "flashMessage");
-            let body = document.getElementsByTagName('body')[0];
-            myMessage.innerHTML = "";
-            body.appendChild(myMessage);
-          }
-          myMessage.innerHTML = "<div class='text-center alert alert-info'>Sikeres mentés!</div>";
-          $("#flashMessage").stop().fadeIn(500);
-          let timer = setTimeout(function () {
-            // var body = document.getElementsByTagName('body')[0];
-            $("#flashMessage").fadeOut(2000, function () {
-              myMessage.innerHTML = ""
-              //body.removeChild(myFlash)
-            });
-          }, 2000);
-        });
+      if (this.selected_players.length == 0) {
+        this.jsMessage();
+      } else {
+        for (let i = 0; i < this.selected_players.length; i++) {
+          this.ajax.ajxCall("/player_manager.php?fkt=save_players_to_teams", { team_id: this.team_id, player_id: this.selected_players[i].ID }).subscribe(res => {
+            this.jsMessage();
+          });
+        }
       }
     }
   }

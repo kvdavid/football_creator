@@ -83,6 +83,16 @@ export class TeamCreatorComponent implements OnInit {
         icon: "warning",
         dangerMode: true,
       })
+    } else if (this.selected_item != '' && this.selected_item != this.team_name) {
+      this.ajax.ajxCall("/team_manager.php?fkt=team_name_change", { team_name: this.team_name, team_color: this.team_color, team_id: this.team_id }).subscribe(res => {
+        swal("Sikeres mentés", "", "success");
+        this.ngOnInit();
+      });
+    } else if (this.selected_item != '' && this.selected_item == this.team_name && this.team_color != orginal_color) {
+      this.ajax.ajxCall("/team_manager.php?fkt=team_name_change", { team_name: this.team_name, team_color: this.team_color, team_id: this.team_id }).subscribe(res => {
+        swal("Sikeres mentés", "", "success");
+        this.ngOnInit();
+      });
     } else if (available_team == true) {
       swal({
         title: "Hiba!",
@@ -90,17 +100,6 @@ export class TeamCreatorComponent implements OnInit {
         icon: "warning",
         dangerMode: true,
       })
-    }
-    else if (this.selected_item != '' && this.selected_item != this.team_name) {
-      this.ajax.ajxCall("/team_manager.php?fkt=team_name_change", { team_name: this.team_name, team_color: this.team_color, team_id: this.team_id }).subscribe(res => {
-        swal("Sikeres mentés", "", "success");
-        this.ngOnInit();
-      });
-    } else if (this.selected_item != '' && this.selected_item == this.team_name &&this.team_color != orginal_color) {
-      this.ajax.ajxCall("/team_manager.php?fkt=team_name_change", { team_name: this.team_name, team_color: this.team_color, team_id: this.team_id }).subscribe(res => {
-        swal("Sikeres mentés", "", "success");
-        this.ngOnInit();
-      });
     } else {
       this.ajax.ajxCall("/team_manager.php?fkt=team_save", { team_name: this.team_name, team_color: this.team_color }).subscribe(res => {
         swal("Sikeres mentés", "", "success");
