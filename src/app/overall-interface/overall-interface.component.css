@@ -1,0 +1,53 @@
+#overall{
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    font-size: 1.3em;
+    color: darkgreen;
+}
+
+img {
+    border-radius: 10px;
+    width: 45px;
+  }
+
+b{
+  color: black;
+}
+
+.btn{
+  background-color: lightgrey;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+select{             
+  background-color: #E2EEFC;
+}
+
+#kapus{
+  color: limegreen;
+  font-weight: bold;
+}
+
+#csatar{
+  color: orangered;
+  font-weight: bold;
+}
+
+#hatved{
+  color: yellowgreen;
+  font-weight: bold;
+}
+
+#kozeppalyas{
+  color: slateblue;
+  font-weight: bold;
+}
+
+.col-xs-12{
+  width: 70%;
+  margin: auto;
+  margin-bottom: 20px;
+}

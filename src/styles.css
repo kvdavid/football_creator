@@ -1,0 +1,25 @@
+body{   
+    background-color: #FAFAFA;
+    color: #9ca4ab;
+    line-height: 17px;
+    margin:0 auto;
+    max-width: 1450px;
+}
+
+.row{
+    margin-bottom: 10%;
+}
+
+.selection_boxes{
+    text-align-last:center;
+    width: 100%;
+    border-radius: 5px;
+}
+
+#delete{
+    margin-left: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+    background-color: red;
+    color: white;
+}

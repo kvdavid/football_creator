@@ -1,0 +1,81 @@
+#player_create{
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    font-size: 1.3em;
+    color: darkgreen;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 50px 0;
+    margin-bottom: 5%;
+}
+
+td {
+    padding: 2em 0;
+}
+
+.btn{
+    background-color: lightgrey;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.col-xs-12{
+    width: 70%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.selection_boxes{
+    text-align-last:center;
+    width: 100%;
+    border-radius: 5px;
+}   
+
+.text_boxes{
+    width: 150px;
+}
+
+#save{
+    background-color: lightblue;
+}
+
+.choosable_boxes2{
+    text-align-last:center;
+    width: 75%;
+    border-radius: 5px;
+}
+
+.div_center{
+    text-align: center;
+}
+
+li {
+    list-style-type: none;
+}
+
+#checkbox{
+    top: 5px;
+    margin-top: 5px;
+    height:20px;
+    width:20px;
+    position: relative;
+}
+
+#news{
+    padding-right: 20px;
+    padding-left: 20px;
+    background-color: green;
+    color: white;
+    margin-top: 5px;
+}
+
+#change{
+    background-color: limegreen;
+    color: black;
+    text-align: center;
+    margin-bottom: 5px;
+}

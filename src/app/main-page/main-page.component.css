@@ -1,0 +1,20 @@
+#football{
+    text-align: center;
+    font-weight: bold;
+    margin-top: 15%;
+    margin-bottom: 10%;
+    font-size: 1.3em;
+    color: darkgreen;
+}
+
+.btn{
+    background-color: lightgrey;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.col-xs-12{
+    width: 70%;
+    margin: auto;
+    margin-bottom: 20px;
+}

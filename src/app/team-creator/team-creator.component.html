@@ -1,0 +1,60 @@
+<div class="container">
+
+  <p id="player_create">Csapat létrehozása</p>
+
+  <div class="table-responsive">
+    <table class="table borderless">
+      <tr>
+        <th *ngIf="standard">
+          Új csapat neve
+        </th>
+        <th [hidden]="standard">
+          Csapatnév módosítása
+        </th>
+        <td>
+          <input id="text_box" type="text" [(ngModel)]="team_name">
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Csapatszín kiválasztása
+        </th>
+        <td>
+          <input type="color" id="head" name="head" [(ngModel)]="team_color">
+        </td>
+      </tr>
+      <tr *ngIf="teams_available">
+          <th>
+            Meglévő csapataim
+          </th>
+          <td>
+            <select required class="selection_boxes" (change)="selectChangeTeam($event)">
+              <option *ngIf="please_choose">Kérlek válassz</option>
+              <option *ngFor="let team of teams">{{team.team_name}}</option>
+            </select>
+          </td>
+          <td class="d-none d-md-block col-xs-12">
+            <button [hidden]="please_choose" class="btn" id="delete" (click)="delete()">Törlés</button>
+          </td>
+        </tr>
+    </table>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3" [hidden]="new_team"></div>
+    <div class="col-md-2" *ngIf="new_team"></div>
+
+    <button class="col-md-2 btn d-md-none col-xs-12" id="delete2" [hidden]="please_choose" (click)="delete()">Törlés</button>
+    <button class="col-md-2 btn d-block d-md-none col-xs-12" id="save" (click)="saveChangesButton()">Mentés</button>
+    <button class="col-md-2 btn d-block d-md-none col-xs-12" *ngIf="new_team" (click)="back_to_new_team()">Új csapat</button>
+    <button class="col-md-2 btn col-xs-12" routerLink="/main_page">Vissza</button>
+    <div class="col-md-1"></div>
+    <button class="col-md-2 btn d-none d-md-block col-xs-12" *ngIf="new_team" (click)="back_to_new_team()">Új csapat</button>
+    <div class="col-md-1"></div>
+    <button class="col-md-2 btn d-none d-md-block col-xs-12" id="save" (click)="saveChangesButton()">Mentés</button>
+
+    <div class="col-md-2" *ngIf="new_team"></div>
+    <div class="col-md-3" [hidden]="new_team"></div>
+  </div>
+
+</div>

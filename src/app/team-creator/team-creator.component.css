@@ -1,0 +1,54 @@
+#player_create{
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10%;
+    font-size: 1.3em;
+    margin-bottom: 5%;
+    color: darkgreen;
+}
+
+th, td {
+    padding: 2em 1em;
+    text-align: left;
+}
+
+.btn{
+    background-color: lightgrey;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.col-xs-12{
+    width: 70%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.selection_boxes{
+    text-align-last:center;
+    width: 180px;
+    border-radius: 5px;
+}
+
+#text_box{
+    width: 180px;
+}
+
+#save{
+    background-color: lightblue;
+}
+
+#delete{
+    margin-top: -3px;
+    background-color: red;
+    color: white;
+}
+
+#delete2{
+    background-color: red;
+    color: white;
+}
+
+.borderless td, .borderless th {
+    border: none;
+}

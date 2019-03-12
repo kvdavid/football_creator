@@ -1,0 +1,211 @@
+<div class="container">
+
+  <p id="player_create">Játékos létrehozása</p>
+
+  <div class="row">
+    <div class="col-md-6 text-md-left text-center" *ngIf="ptt">
+      <a class="btn" id="news" (click)="add_players_to_team()" data-toggle="modal" data-target=".popup">Játékosok
+        csapatba rendelése</a>
+    </div>
+    <div class="col-md-12 text-center" [hidden]="ptt">
+      <a class="btn" id="news" data-toggle="modal" data-target=".create_player" (click)="new_player()">Új játékos
+        felvétele</a>
+    </div>
+    <div class="col-md-6 text-md-right text-center" *ngIf="ptt">
+      <a class="btn" id="news" data-toggle="modal" data-target=".create_player" (click)="new_player()">Új játékos
+        felvétele</a>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table" *ngIf="available_players">
+      <tr>
+        <th>Játékos neve</th>
+        <th>Játékos posztja</th>
+        <th>Játékos kora</th>
+        <th width="280px">Műveletek</th>
+      </tr>
+      <tr *ngFor="let player of players; let i=index">
+        <td>{{player.name}}</td>
+        <td>{{player.position}}</td>
+        <td>{{player.age}}</td>
+        <td>
+          <div class="row">
+            <div class="col-md-4 text-center">
+              <a class="btn" id="change" data-toggle="modal" data-target=".change_players"
+                (click)="modification(i)">Módosítás</a>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4 text-md-right">
+              <a class="btn" id="delete" (click)="delete(i)">Törlés</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="row">
+    <div class="col-md-5 d-none d-md-block col-xs-12"></div>
+    <button class="col-md-2 btn d-none d-md-block col-xs-12" routerLink="/main_page">Vissza</button>
+    <button class="col-md-2 btn d-block d-md-none col-xs-12" routerLink="/main_page">Vissza</button>
+    <div class="col-md-5 d-none d-md-block col-xs-12"></div>
+  </div>
+
+  <div class="modal fade create_player">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center">Új játékos felvétele</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <table align="center">
+            <tr>
+              <th>
+                Új játékos neve
+              </th>
+              <td>
+                <input class="text_boxes" type="text" [(ngModel)]="player_name">
+              </td>
+            </tr>
+            <tr>
+            <tr>
+              <th>
+                Játékos posztja
+              </th>
+              <td>
+                <select class="selection_boxes" [(ngModel)]="player_post">
+                  <option>Kapus</option>
+                  <option>Hátvéd</option>
+                  <option>Középpályás</option>
+                  <option>Csatár</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Játékos kora
+              </th>
+              <td>
+                <input class="text_boxes" type="number" [(ngModel)]="player_age">
+              </td>
+            </tr>
+          </table>
+          <div class="col-md-1"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" id="save" data-dismiss="modal" (click)="saveChangesButton()">Mentés</button>
+          <button type="button" class="btn" id="delete" data-dismiss="modal">Bezár</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade change_players">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center">Játékos módosítása</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <table align="center">
+            <tr>
+              <th>
+                Játékos neve
+              </th>
+              <td>
+                <input class="text_boxes" type="text" [(ngModel)]="player_name">
+              </td>
+            </tr>
+            <tr>
+            <tr>
+              <th>
+                Játékos posztja
+              </th>
+              <td>
+                <select class="selection_boxes" [(ngModel)]="player_post">
+                  <option>Kapus</option>
+                  <option>Hátvéd</option>
+                  <option>Középpályás</option>
+                  <option>Csatár</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Játékos kora
+              </th>
+              <td>
+                <input class="text_boxes" type="number" [(ngModel)]="player_age">
+              </td>
+            </tr>
+          </table>
+          <div class="col-md-1"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" id="save" data-dismiss="modal" (click)="saveModification()">Mentés</button>
+          <button type="button" class="btn" id="delete" data-dismiss="modal">Bezár</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade popup">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center">Játékosok csapatba rendelése</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="flashMessage"></div>
+          <div *ngIf="players_to_team" class="row">
+
+            <div class="col-md-1"></div>
+
+            <div class="col-md-4">
+              <div class="div_center">Csapat kiválasztása</div><br>
+              <select class="choosable_boxes2 div_center" [(ngModel)]="choosed_team" (change)="selectTeam($event)">
+                <option *ngFor="let team of teams">{{team.team_name}}</option>
+              </select>&nbsp;
+              <input type="color" disabled id="head" name="head" [(ngModel)]="team_color">
+            </div>
+
+            <div class="col-md-2" style="margin-bottom:15px"></div>
+
+            <div class="col-md-4">
+              <div class="div_center">Játékosok kiválasztása</div><br>
+              <input class="form-control" name="search" [(ngModel)]="filter" placeholder="Keresés.."
+                title="Írj be valamit">
+
+              <li *ngFor="let player of players | filter : filter; let i=index">
+                <a>
+                  <input (change)="getSelected()" type="checkbox" id="checkbox" [(ngModel)]="player.selected">&nbsp;
+                  <label>{{player.name}} ({{player.position}})</label>
+                </a>
+              </li><br>
+              <div style="text-align:center">
+                <button type="button" class="btn" id="save" (click)="save_players_to_team()">Mentés</button>
+              </div>
+            </div>
+
+            <div class="col-md-1"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn" id="delete" data-dismiss="modal">Bezár</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

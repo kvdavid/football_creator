@@ -1,0 +1,60 @@
+<div class="container">
+  <p id="overall">Összefoglaló felület</p>
+  <div class="row">
+    <div class="col-md-12" style="text-align: center; padding-bottom: 10px;"> Melyik csapatot szeretnéd megtekinteni?
+    </div>
+    <div class="col-md-5"></div>
+    <div class="col-md-2">
+      <select required class="selection_boxes" (change)="team_choosed($event)">
+        <option *ngIf="please_choose">Kérlek válassz</option>
+        <option *ngFor="let team of teams">{{team.team_name}}</option>
+      </select>
+    </div>
+    <div class="col-md-5"></div>
+
+    <div class="col-md-5" *ngIf="team_selected"></div>
+    <div class="col-md-2" *ngIf="team_selected" style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
+      <p>Csapat logo:</p> <input type="color" disabled id="head" name="head" [(ngModel)]="team_color"></div>
+    <div class="col-md-5" *ngIf="team_selected"></div>
+
+    <div class="cold-md-5" *ngIf="team_selected"></div>
+    <div class="cold-md-2" *ngIf="team_selected"
+      style="border:2px solid green; width:60%; height: 100%; text-align: center; margin:0 auto;">
+      <b>Kapus</b> <img src="./assets/images/kapus.png"><br />
+      <p *ngIf="kapus_available" id="kapus">{{kapus.name}}, {{kapus.age}} éves</p>
+      <p [hidden]="kapus_available">Ehhez a csapathoz még nem tartozik kapus</p><br />
+      <b>Csatárok</b> <img src="./assets/images/csatar.jpg">
+      <div *ngIf="csatar_available">
+        <p *ngFor="let csatar of csatarok" id="csatar">{{csatar.names}}, {{csatar.ages}} éves </p>
+      </div><br />
+      <div [hidden]="csatar_available">
+        <p>Ehhez a csapathoz még nem tartozik csatár</p>
+      </div>
+      <b>Hátvédek</b> <img src="./assets/images/hatved.jpg">
+      <div *ngFor="let hatved of hatvedek">
+        <p *ngIf="hatved_available" id="hatved">{{hatved.names}}, {{hatved.ages}} éves </p>
+      </div><br />
+      <div [hidden]="hatved_available">
+          <p>Ehhez a csapathoz még nem tartozik hátvéd</p>
+        </div>
+      <b>Középpályások</b> <img src="./assets/images/hatved.jpg">
+      <div *ngFor="let kozeppalyas of kozeppalyasok">
+        <p *ngIf="kozeppalyas_available" id="kozeppalyas">{{kozeppalyas.names}}, {{kozeppalyas.ages}} éves </p>
+      </div><br />
+      <div [hidden]="kozeppalyas_available">
+          <p>Ehhez a csapathoz még nem tartozik középpályás</p>
+        </div>
+    </div>
+    <div class="cold-md-5" *ngIf="team_selected"></div>
+
+  </div>
+
+
+</div>
+
+<div class="row">
+    <div class="col-md-5 d-none d-md-block col-xs-12"></div>
+    <button class="col-md-2 btn d-none d-md-block col-xs-12" routerLink="/main_page">Vissza</button>
+    <button class="col-md-2 btn d-block d-md-none col-xs-12" routerLink="/main_page">Vissza</button>
+    <div class="col-md-5 d-none d-md-block col-xs-12"></div>
+  </div>
